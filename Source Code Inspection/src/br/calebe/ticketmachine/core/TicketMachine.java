@@ -37,7 +37,7 @@ public class TicketMachine {
     }
 
     public Iterator<Integer> getTroco() {
-        return null;
+        return float;//pois caso o troco seja em moeda, o tipo dele nao poderá ser inteiro.
     }
 
     public String imprimir() throws SaldoInsuficienteException {
