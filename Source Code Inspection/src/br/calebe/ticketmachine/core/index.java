@@ -6,6 +6,7 @@ import br.calebe.ticketmachine.core.TicketMachine;
 import br.calebe.ticketmachine.exception.PapelMoedaInvalidaException;
 import br.calebe.ticketmachine.exception.SaldoInsuficienteException;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,52 +21,50 @@ public class index {
 
     public static void main(String[] args) throws PapelMoedaInvalidaException, SaldoInsuficienteException {
         TicketMachine ticketMachine = new TicketMachine(10);
-        System.out.println("Selecione uma opcao do Ticket Machine:");
-        System.out.println("1)Inserir");
-        System.out.println("2)Imprimir");
-        System.out.println("3)Troco");
-        System.out.println("4)Sair");
-        Scanner sc = new Scanner(System.in);
-        int op = sc.nextInt();
+        JOptionPane.showMessageDialog(null,"Selecione uma opcao do Ticket Machine:\n"+
+        "1)Inserir\n"+
+       "2)Imprimir\n"+
+        "3)Troco\n"+
+        "4)Sair");
+        int x = Integer.parseInt(JOptionPane.showInputDialog("MENU"));
         do {
-            switch (op) {
+            switch (x) {
                 case 1:
                     int valor = 0;
-                    System.out.println("Quanto deseja inserir?" + valor);
-                    valor = sc.nextInt();
+                    JOptionPane.showMessageDialog(null,"Quanto deseja inserir?" + valor);
+                    valor = Integer.parseInt(JOptionPane.showInputDialog("Digite o valor da nota a ser inserido: "));
                     ticketMachine.inserir(valor);
-                    System.out.println(ticketMachine.getSaldo());
+                    JOptionPane.showMessageDialog(null,ticketMachine.getSaldo());
                     if(ticketMachine.getSaldo() == 0){
-                        System.out.print("Insira uma nota existente");
+                        JOptionPane.showMessageDialog(null,"Insira uma nota existente");
                     }
-                    
                     break;
                 case 2:
-                    System.out.println("Imprimir ticket:" + ticketMachine.getValor());
+                    JOptionPane.showMessageDialog(null,"Imprimir ticket:" + ticketMachine.getValor());
                     if(ticketMachine.getSaldo() != 0){
-                    System.out.println(ticketMachine.imprimir());
+                    JOptionPane.showMessageDialog(null,ticketMachine.imprimir());
                     }else{
-                        System.out.println("Voce nao tem saldo");
+                        JOptionPane.showMessageDialog(null,"Voce nao tem saldo");
                     }
                     break;
                 case 3:
                     int trocoValor = 0;
-                    System.out.println("Troco da compra:" + trocoValor);
-                    trocoValor = sc.nextInt();
+                    JOptionPane.showMessageDialog(null,"Troco da compra:" + trocoValor);
+                    trocoValor = Integer.parseInt(JOptionPane.showInputDialog("Troco: "));
                     ticketMachine.getTroco();
-                    System.out.println(ticketMachine.getTroco());
+                    JOptionPane.showMessageDialog(null,ticketMachine.getTroco());
                     break;
                 case 4:
                     break;
             }
-            if (op != 4) {
-                System.out.println("Selecione uma opcao do Ticket Machine:");
-                System.out.println("1)Inserir");
-                System.out.println("2)Imprimir");
-                System.out.println("3)Troco");
-                System.out.println("4)Sair");
-                op = sc.nextInt();
+            if (x != 4) {
+                JOptionPane.showMessageDialog(null, "Selecione uma opcao do Ticket Machine: \n"+
+                  "1)Inserir\n"+
+                "2)Imprimir\n"+
+                "3)Troco\n"+
+                "4)Sair");
+                x = Integer.parseInt(JOptionPane.showInputDialog("MENU"));
             }
-        } while (op != 4);
+        } while (x != 4);
     }
 }

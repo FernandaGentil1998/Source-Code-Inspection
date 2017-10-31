@@ -3,6 +3,7 @@ package br.calebe.ticketmachine.core;
 import br.calebe.ticketmachine.exception.PapelMoedaInvalidaException;
 import br.calebe.ticketmachine.exception.SaldoInsuficienteException;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,7 +28,7 @@ public class TicketMachine {
             }
         }
         if (!achou) {
-            System.out.println("Não encontrou");
+            JOptionPane.showMessageDialog(null,"Não encontrou");
         } else {
             this.saldo += quantia;
 
