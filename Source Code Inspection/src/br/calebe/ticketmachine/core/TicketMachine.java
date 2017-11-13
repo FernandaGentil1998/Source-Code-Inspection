@@ -3,6 +3,7 @@ package br.calebe.ticketmachine.core;
 import br.calebe.ticketmachine.exception.PapelMoedaInvalidaException;
 import br.calebe.ticketmachine.exception.SaldoInsuficienteException;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,7 +28,7 @@ public class TicketMachine {
             }
         }
         if (!achou) {
-            System.out.println("Não encontrou");
+            JOptionPane.showMessageDialog(null,"Não encontrou");
         } else {
             this.saldo += quantia;
 
@@ -49,13 +50,17 @@ public class TicketMachine {
     public String imprimir() throws SaldoInsuficienteException {
         String result = "*****************\n";
         if (saldo < valor) {
-            return "erro";
+            return "erro. \n O valor do TICKET (10) está menor do que o saldo inserido. Favor validar.";
         } else {
             this.saldo = saldo - valor;
-            result += "*** R$ " + saldo + ",00 ****\n";
+            result += "\n *** R$ " + saldo + ",00 ****\n";
             result += "*****************\n";
             return result;
         }
         
+    }
+    
+    public void retirar (int quantia) throws PapelMoedaInvalidaException{
+           this.saldo = 0;
     }
 }
